@@ -29,9 +29,9 @@ class CarListing(models.Model):
         related_name="car_listings",
     ),
     car_model = models.ForeignKey(CarModel, on_delete=models.CASCADE,)
-    year = models.DecimalField(max_digits=4)
-    price = models.DecimalField(max_digits=4)
-    mileage = models.DecimalField(max_digits=4)
+    year = models.IntegerField()
+    price = models.IntegerField()
+    mileage = models.IntegerField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
