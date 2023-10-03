@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class CarBrand(models.Model):
+class Brand(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
@@ -13,51 +13,72 @@ class CarBrand(models.Model):
         return self.name
 
 
-class CarModel(models.Model):
+class Model(models.Model):
     brand = models.ForeignKey(
-        CarBrand,
+        Brand,
         on_delete=models.CASCADE,
         related_name="models",
     )
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return f"{self.brand.name} {self.name}"
 
-class CarListing(models.Model):
+
+class Listing(models.Model):
     seller = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="car_listings",
-    ),
-    car_model = models.ForeignKey(CarModel, on_delete=models.CASCADE,)
+    )
+    car_model = models.ForeignKey(Model, on_delete=models.CASCADE, related_name="car_models")
     year = models.IntegerField()
     price = models.IntegerField()
     mileage = models.IntegerField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def first_photo(self) -> object:
+        return self.images.first()
+
     class Meta:
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.car_model.brand.name} {self.car_model.name}, " \
-               f"{self.price}, {self.created_at}"
+        return f"{self.car_model.name}, {self.price}, {self.created_at.strftime('%d %b %Y')}"
 
 
-class CarImage(models.Model):
+class Image(models.Model):
     listing = models.ForeignKey(
-        CarListing,
+        Listing,
         on_delete=models.CASCADE,
-        related_name="images",
+        related_name="images"
     )
-    image = models.ImageField()
+    image = models.ImageField(null=True)
+
+    def image_upload_to(self, filename):
+        return f'images/listing_{self.listing.id}/{filename}'
+
+    image.upload_to = image_upload_to
 
 
-class User(AbstractUser):
-    profile_picture = models.ImageField()
+class MarketUser(AbstractUser):
+    profile_picture = models.ImageField(null=True, blank=True)
+    phone_number = models.CharField(max_length=13, unique=True, null=True)
     favourite_listings = models.ManyToManyField(
-        CarListing,
+        Listing,
         related_name="users",
+        blank=True
     )
 
     class Meta:
         ordering = ["username"]
+
+    def __str__(self):
+        return self.first_name
+
+    def image_upload_to(self, filename):
+        return f'images/marketuser_{self.id}/{filename}'
+
+    profile_picture.upload_to = image_upload_to

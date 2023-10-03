@@ -1,0 +1,82 @@
+<section>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+        <h3 class="text-center">Find your car</h3>
+        <form role="form" id="contact-form" method="get" autocomplete="off" action="{% url 'marketplace:listings-list' %}">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 ps-2">
+                <label>Brand</label>
+                <div class="input-group mb-4">
+                  {{ search_form.brand }}
+{#                  <input class="form-control" placeholder="" aria-label="First Name..." type="text" >#}
+                </div>
+              </div>
+              <div class="col-md-6 ps-2">
+                <label>Model</label>
+                <div class="input-group">
+                    {{ search_form.model }}
+{#                  <input type="text" class="form-control" placeholder="" aria-label="Last Name..." >#}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 ps-2">  {#mb-4#}
+                <label>Year From</label>
+                  <div class="input-group">
+                    {{ search_form.year_start }}
+                  </div>
+{#                <input type="email" class="form-control" placeholder="" >#}
+              </div>
+              <div class="col-md-6 ps-2">
+                <label>Year To</label>
+                <div class="input-group mb-4">
+                    {{ search_form.year_end }}
+                </div>
+{#                <input type="email" class="form-control" placeholder="" >#}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 ps-2">  {#mb-4#}
+                <label>Price From</label>
+                  <div class="input-group">
+                    {{ search_form.price_start }}
+                  </div>
+{#                <input type="email" class="form-control" placeholder="" >#}
+              </div>
+              <div class="col-md-6 ps-2">
+                <label>Price To</label>
+                <div class="input-group mb-4">
+                    {{ search_form.price_end }}
+                </div>
+{#                <input type="email" class="form-control" placeholder="" >#}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 ps-2">  {#mb-4#}
+                <label>Mileage From</label>
+                  <div class="input-group">
+                    {{ search_form.mileage_start }}
+                  </div>
+{#                <input type="email" class="form-control" placeholder="" >#}
+              </div>
+              <div class="col-md-6 ps-2">
+                <label>Mileage To</label>
+                <div class="input-group mb-4">
+                    {{ search_form.mileage_end }}
+                </div>
+{#                <input type="email" class="form-control" placeholder="" >#}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 ps-2">
+                <button type="submit" class="btn bg-gradient-dark w-100">Find car</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
