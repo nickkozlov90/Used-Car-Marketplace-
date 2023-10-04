@@ -1,9 +1,12 @@
+import re
 from datetime import datetime
 
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from marketplace.models import Brand, Model, Image, Listing
+from marketplace.models import Brand, Model, Image, Listing, MarketUser
 
 current_year = datetime.now().year
 MIN_YEAR = 1970
@@ -132,3 +135,30 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['image']
+
+
+class MarketUserCreationForm(UserCreationForm):
+    class Meta:
+        model = MarketUser
+        fields = (
+            "username",
+            "password1",
+            "password2",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "profile_picture",
+        )
+
+    def clean_phone_number(self):
+        return validate_phone_number(self.cleaned_data["phone_number"])
+
+
+def validate_phone_number(phone_number):
+    if len(phone_number) != 13:
+        raise ValidationError("Ensure the phone number consist of 13 characters")
+    elif phone_number[:4] != "+380":
+        raise ValidationError("Ensure the phone number starts with '+380'")
+    elif not re.match(r"^[0-9+]+$", phone_number):
+        raise ValidationError("Ensure the phone number contains only '+' and digits")
+    return phone_number
