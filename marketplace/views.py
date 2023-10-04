@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from marketplace.forms import SearchForm, ListingForm, MarketUserCreationForm
+from marketplace.forms import SearchForm, ListingForm, MarketUserCreationForm, MarketUserUpdateForm
 from marketplace.models import Model, MarketUser, Listing, Image
 
 
@@ -215,7 +215,14 @@ class MarketUserCreateView(generic.CreateView):
 
 
 class MarketUserUpdateView(LoginRequiredMixin, generic.UpdateView):
-    pass
+    model = MarketUser
+    form_class = MarketUserUpdateForm
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'marketplace:market-user-detail',
+            kwargs={'pk': self.object.pk},
+        )
 
 
 class MarketUserFavouriteListingsView(LoginRequiredMixin, generic.ListView):

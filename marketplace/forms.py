@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 
@@ -162,3 +162,21 @@ def validate_phone_number(phone_number):
     elif not re.match(r"^[0-9+]+$", phone_number):
         raise ValidationError("Ensure the phone number contains only '+' and digits")
     return phone_number
+
+
+class MarketUserUpdateForm(UserChangeForm):
+    class Meta:
+        model = MarketUser
+        fields = (
+            "first_name",
+            "last_name",
+            "phone_number",
+            "profile_picture",
+        )
+
+    def __init__(self, *args, **kwargs):
+        super(MarketUserUpdateForm, self).__init__(*args, **kwargs)
+        self.fields["password"].widget = forms.HiddenInput()
+
+    def clean_phone_number(self):
+        return validate_phone_number(self.cleaned_data["phone_number"])
