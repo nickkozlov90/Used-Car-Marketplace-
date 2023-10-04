@@ -1,0 +1,579 @@
+[
+  {
+    "model": "marketplace.brand",
+    "pk": 1,
+    "fields": {
+      "name": "Ford"
+    }
+  },
+  {
+    "model": "marketplace.brand",
+    "pk": 2,
+    "fields": {
+      "name": "Honda"
+    }
+  },
+  {
+    "model": "marketplace.brand",
+    "pk": 3,
+    "fields": {
+      "name": "Hyundai"
+    }
+  },
+  {
+    "model": "marketplace.brand",
+    "pk": 4,
+    "fields": {
+      "name": "Mazda"
+    }
+  },
+  {
+    "model": "marketplace.brand",
+    "pk": 5,
+    "fields": {
+      "name": "Subaru"
+    }
+  },
+  {
+    "model": "marketplace.brand",
+    "pk": 6,
+    "fields": {
+      "name": "Tesla"
+    }
+  },
+  {
+    "model": "marketplace.brand",
+    "pk": 7,
+    "fields": {
+      "name": "Toyota"
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 1,
+    "fields": {
+      "name": "Edge",
+      "brand": 1
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 2,
+    "fields": {
+      "name": "Focus",
+      "brand": 1
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 3,
+    "fields": {
+      "name": "Civic",
+      "brand": 2
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 5,
+    "fields": {
+      "name": "CR-V",
+      "brand": 2
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 6,
+    "fields": {
+      "name": "CR-V Hybrid",
+      "brand": 2
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 7,
+    "fields": {
+      "name": "Ridgeline",
+      "brand": 2
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 8,
+    "fields": {
+      "name": "Santa Fe",
+      "brand": 3
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 9,
+    "fields": {
+      "name": "CX-5",
+      "brand": 4
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 10,
+    "fields": {
+      "name": "Impreza",
+      "brand": 5
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 11,
+    "fields": {
+      "name": "Outback",
+      "brand": 5
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 12,
+    "fields": {
+      "name": "Model 3",
+      "brand": 6
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 13,
+    "fields": {
+      "name": "Model Y",
+      "brand": 6
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 14,
+    "fields": {
+      "name": "Camry",
+      "brand": 7
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 15,
+    "fields": {
+      "name": "RAV-4",
+      "brand": 7
+    }
+  },
+  {
+    "model": "marketplace.model",
+    "pk": 16,
+    "fields": {
+      "name": "Yaris",
+      "brand": 7
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "joyce.byers",
+      "first_name": "Joyce",
+      "last_name": "Byers",
+      "email": "joyce.byers@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:17:04Z",
+      "favourite_listings": [],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380247620356"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$QtPol3T7x9quBj4BnbnVwW$UwT4kihkRfSvQEWEeuqVKwMgis2ikKVZfJDBcQMvOKY=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jim.hopper",
+      "first_name": "Jim",
+      "last_name": "Hopper",
+      "email": "jim.hopper@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:19:09Z",
+      "favourite_listings": [3, 4, 10],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380175501675"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jonathan.byers",
+      "first_name": "Jonathan",
+      "last_name": "Byers",
+      "email": "jonathan.byers@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-08T14:19:09Z",
+      "favourite_listings": [5, 7, 11, 14],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380063428631"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "dustin.henderson",
+      "first_name": "Dustin",
+      "last_name": "Henderson",
+      "email": "dustin.henderson@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [3, 10],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380256421827"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "mike.wheeler",
+      "first_name": "Mike",
+      "last_name": "Wheeler",
+      "email": "mike.wheeler@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [16],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380341096365"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "lucas.sinclair",
+      "first_name": "Lucas",
+      "last_name": "Sinclair",
+      "email": "lucas.sinclair@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [8, 9],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380208748593"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "nancy.wheeler",
+      "first_name": "Nancy",
+      "last_name": "Wheeler",
+      "email": "nancy.wheeler@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380252583799"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "martin.brenner",
+      "first_name": "Martin",
+      "last_name": "Brenner",
+      "email": "martin.brenner@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380261621585"
+    }
+  },
+  {
+    "model": "marketplace.marketuser",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "billy.hargrove",
+      "first_name": "Billy",
+      "last_name": "Hargrove",
+      "email": "billy.hargrove@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380209302557"
+    }
+  },
+    {
+    "model": "marketplace.marketuser",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "bob.newby",
+      "first_name": "Bob",
+      "last_name": "Newby",
+      "email": "bob.newby@marketplace.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2022-08-09T14:19:09Z",
+      "favourite_listings": [],
+      "groups": [],
+      "user_permissions": [],
+      "phone_number": "+380126583916"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 1,
+    "fields": {
+      "car_model": 1,
+      "seller": 11,
+      "year": "2018",
+      "price": "14998",
+      "mileage": "190198",
+      "description": "SEL 4dr SUV AWD (2.0L 4cyl Turbo 6A). No accidents, 2 owners, corporate fleet vehicle.",
+      "created_at": "2023-08-27T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 2,
+    "fields": {
+      "car_model": 16,
+      "seller": 10,
+      "year": "2018",
+      "price": "17999",
+      "mileage": "167754",
+      "description": "SE 4dr Hatchback (1.5L 4cyl 4A). No accidents, 1 owner, rental vehicle.",
+      "created_at": "2023-08-27T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 3,
+    "fields": {
+      "car_model": 10,
+      "seller": 9,
+      "year": "2016",
+      "price": "12700",
+      "mileage": "183717",
+      "description": "2.0i Premium PZEV 4dr Sedan AWD (2.0L 4cyl CVT). 3 owners, personal use only.",
+      "created_at": "2023-08-26T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 4,
+    "fields": {
+      "car_model": 14,
+      "seller": 8,
+      "year": "2019",
+      "price": "19599",
+      "mileage": "119400",
+      "description": "LE 4dr Sedan (2.5L 4cyl 8A). 1 accident, 2 owners, personal use only.",
+      "created_at": "2023-08-27T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 5,
+    "fields": {
+      "car_model": 15,
+      "seller": 7,
+      "year": "2019",
+      "price": "28995",
+      "mileage": "92127",
+      "description": "Limited 4dr SUV (2.5L 4cyl 8A). No accidents, 2 owners, personal use only.",
+      "created_at": "2023-08-27T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 6,
+    "fields": {
+      "car_model": 2,
+      "seller": 6,
+      "year": "2018",
+      "price": "17590",
+      "mileage": "42480",
+      "description": "SE 4dr Hatchback (2.0L 4cyl 6AM). No accidents, 2 owners, corporate fleet vehicle.",
+      "created_at": "2023-08-28T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 7,
+    "fields": {
+      "car_model": 5,
+      "seller": 5,
+      "year": "2021",
+      "price": "32000",
+      "mileage": "48602",
+      "description": "EX-L 4dr SUV AWD (1.5L 4cyl Turbo CVT). No accidents, 1 owner, corporate fleet vehicle.",
+      "created_at": "2023-08-27T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 8,
+    "fields": {
+      "car_model": 12,
+      "seller": 4,
+      "year": "2021",
+      "price": "35590",
+      "mileage": "20730",
+      "description": "Standard Range Plus 4dr Sedan w/Prod. End 11/21 (electric DD). No accidents, 1 owner, personal use.",
+      "created_at": "2023-08-28T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 9,
+    "fields": {
+      "car_model": 13,
+      "seller": 3,
+      "year": "2023",
+      "price": "46999",
+      "mileage": "8090",
+      "description": "Long Range 4dr SUV AWD (electric DD). No accidents, 1 owner, personal use.",
+      "created_at": "2023-08-29T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 10,
+    "fields": {
+      "car_model": 3,
+      "seller": 2,
+      "year": "2014",
+      "price": "12995",
+      "mileage": "102125",
+      "description": "LX 4dr Sedan (1.8L 4cyl CVT). No accidents, 2 owners, corporate fleet vehicle.",
+      "created_at": "2023-08-29T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 11,
+    "fields": {
+      "car_model": 8,
+      "seller": 1,
+      "year": "2023",
+      "price": "30266",
+      "mileage": "30181",
+      "description": "SEL 4dr SUV AWD (2.5L 4cyl 8A). No accidents, 1 owner, rental vehicle.",
+      "created_at": "2023-08-24T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 12,
+    "fields": {
+      "car_model": 7,
+      "seller": 2,
+      "year": "2022",
+      "price": "36999",
+      "mileage": "66575",
+      "description": "Black Edition 4dr Crew Cab AWD SB (3.5L 6cyl 9A). No accidents, 1 owner, personal use.",
+      "created_at": "2023-08-25T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 13,
+    "fields": {
+      "car_model": 6,
+      "seller": 3,
+      "year": "2021",
+      "price": "36000",
+      "mileage": "28010",
+      "description": "Touring 4dr SUV AWD (2.0L 4cyl gas/electric hybrid CVT). No accidents, 2 owners, corporate fleet vehicle.",
+      "created_at": "2023-08-27T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 14,
+    "fields": {
+      "car_model": 5,
+      "seller": 4,
+      "year": "2014",
+      "price": "17500",
+      "mileage": "163094",
+      "description": "EX-L 4dr SUV AWD (2.4L 4cyl 5A). No accidents, 2 owners, personal use only.",
+      "created_at": "2023-08-26T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 15,
+    "fields": {
+      "car_model": 11,
+      "seller": 7,
+      "year": "2018",
+      "price": "20000",
+      "mileage": "197300",
+      "description": "2.5i Premium 4dr SUV AWD (2.5L 4cyl CVT). No accidents, 2 owners, personal use only.",
+      "created_at": "2023-08-29T15:30:00.000000Z"
+    }
+  },
+  {
+    "model": "marketplace.listing",
+    "pk": 16,
+    "fields": {
+      "car_model": 9,
+      "seller": 10,
+      "year": "2018",
+      "price": "22899",
+      "mileage": "80262",
+      "description": "Touring 4dr SUV AWD (2.5L 4cyl 6A). No accidents, 2 owners, rental vehicle.",
+      "created_at": "2023-08-28T15:30:00.000000Z"
+    }
+  }
+]
