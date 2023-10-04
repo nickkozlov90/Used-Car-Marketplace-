@@ -40,7 +40,8 @@
 <link id="pagestyle" href="{% static 'css/soft-design-system.css' %}" rel="stylesheet" />
 </head>
 
-<body {% block body %}{% endblock body %}>
+<body>
+{% block body %}
 
   {% block header %}
 
@@ -65,5 +66,6 @@
 
   {% block javascripts %}{% endblock javascripts %}
 
+{% endblock body %}
 </body>
 </html>
