@@ -185,7 +185,11 @@ class ListingUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 class ListingDeleteView(LoginRequiredMixin, generic.DeleteView):
-    pass
+    model = Listing
+
+    def get_success_url(self):
+        user_id = self.object.seller.id
+        return reverse('marketplace:sale-listings', kwargs={'pk': user_id})
 
 
 class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
