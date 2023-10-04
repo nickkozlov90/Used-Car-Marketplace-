@@ -503,7 +503,7 @@
     "pk": 11,
     "fields": {
       "car_model": 8,
-      "seller": 1,
+      "seller": 7,
       "year": "2023",
       "price": "30266",
       "mileage": "30181",

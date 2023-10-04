@@ -1,5 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
+from django.forms import inlineformset_factory
 from django.http import HttpRequest
 from django.shortcuts import render
 from django.views import generic
@@ -79,5 +81,36 @@ class ListingListView(generic.ListView):
         return context
 
 
+ImageFormSet = inlineformset_factory(
+    Listing,
+    Image,
+    fields=['image'],
+    extra=1,
+    can_delete=True
+)
+
+
+class ListingDetailView(generic.DetailView):
+    model = Listing
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['images'] = self.object.images.all()
+        context['is_author'] = self.object.seller == self.request.user
+
+        image_urls = [image.image.url for image in context['images']]
+        context['image_urls'] = image_urls
+        return context
+
+
 class ListingCreateView(LoginRequiredMixin, generic.CreateView):
+    pass
+
+
+class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
+    pass
+
+
+@login_required
+def toggle_assign_to_listing(request, pk):
     pass
