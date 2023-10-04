@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+{% load static %}
+{% load query_transform %}
+
+{#{% block body %} class="blog-author bg-gray-100" {% endblock body %}#}
+
+{% block content %}
+
+  <section class="py-sm-7 py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="row py-lg-3 py-5">
+            {% if marketuser.profile_picture %}
+            <div class="col-lg-3 col-md-5 position-relative my-auto">
+              <img class="img border-radius-lg max-width-200 w-100 position-relative z-index-2" src="{{ marketuser.profile_picture.url }}" alt="No photo">
+            </div>
+            {% else %}
+            <div class="col-lg-3 col-md-5 position-relative">
+                <div class="img border-radius-lg max-width-200 w-100 position-relative z-index-2">No photo available</div>
+            </div>
+            {% endif %}
+            <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4 class="mb-0">{{ marketuser.first_name }} {{ marketuser.last_name }}</h4>
+              </div>
+              <div class="row mb-4">
+                <span>{{ marketuser.username }}</span><br>
+                <span>Registered on site: {{ marketuser.date_joined.date }}</span>
+              </div>
+              <div class="row mb-4">
+                <div class="col-auto">
+                  <span class="h6">Tel: {{ marketuser.phone_number }}</span>
+                </div>
+              </div>
+
+              <p class="text-lg mb-0">
+                <a href="{% url 'marketplace:sale-listings' pk=marketuser.id %}" class="text-info icon-move-right">See all user's ads
+                  <i class="fas fa-arrow-right text-sm ms-1"></i>
+                </a><br>
+                {% if user.id == marketuser.id %}
+                <a href="{% url 'marketplace:market-user-update' pk=marketuser.id %}" class="text-info icon-move-right">Edit personal data
+                  <i class="fas fa-arrow-right text-sm ms-1"></i>
+                </a>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

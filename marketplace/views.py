@@ -193,7 +193,14 @@ class ListingDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
-    pass
+    model = MarketUser
+    template_name = "marketplace/market_user_detail.html"
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('pk')
+        queryset = MarketUser.objects.filter(id=user_id)
+
+        return queryset
 
 
 class MarketUserCreateView(generic.CreateView):
