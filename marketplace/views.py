@@ -111,6 +111,10 @@ class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
     pass
 
 
+class MarketUserCreateView(generic.CreateView):
+    pass
+
+
 @login_required
 def toggle_assign_to_listing(request, pk):
     pass
