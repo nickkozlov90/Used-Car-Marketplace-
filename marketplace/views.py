@@ -4,9 +4,10 @@ from django.db.models import Prefetch
 from django.forms import inlineformset_factory
 from django.http import HttpRequest
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import generic
 
-from marketplace.forms import SearchForm
+from marketplace.forms import SearchForm, ListingForm
 from marketplace.models import Model, MarketUser, Listing, Image
 
 
@@ -104,7 +105,42 @@ class ListingDetailView(generic.DetailView):
 
 
 class ListingCreateView(LoginRequiredMixin, generic.CreateView):
-    pass
+    model = Listing
+    form_class = ListingForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['image_formset'] = ImageFormSet(
+                self.request.POST,
+                self.request.FILES,
+                instance=self.object
+            )
+        else:
+            context['image_formset'] = ImageFormSet(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        listing = form.save(commit=False)
+        listing.seller = self.request.user
+        listing.save()
+
+        context = self.get_context_data()
+        image_formset = context['image_formset']
+
+        if image_formset.is_valid():
+            instances = image_formset.save(commit=False)
+            for instance in instances:
+                instance.listing = listing
+                instance.save()
+
+            return super().form_valid(form)
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        user_id = self.object.seller.id
+        return reverse('marketplace:sale-listings', kwargs={'pk': user_id})
 
 
 class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
@@ -112,6 +148,18 @@ class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
 
 
 class MarketUserCreateView(generic.CreateView):
+    pass
+
+
+class MarketUserUpdateView(LoginRequiredMixin, generic.UpdateView):
+    pass
+
+
+class MarketUserFavouriteListingsView(LoginRequiredMixin, generic.ListView):
+    pass
+
+
+class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
     pass
 
 

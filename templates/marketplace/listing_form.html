@@ -1,0 +1,75 @@
+
+{% extends 'layouts/base_sections.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-6 d-flex justify-content-center flex-column">
+      <div class="card d-flex blur justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+        <div class="text-left">
+          <h3 class="text-gradient text-primary">Create ad to sell your car</h3>
+          <p class="mb-0">
+            Add photos and basic information about the car you want to sell.
+          </p>
+        </div>
+        <div class="form-group mb-4">
+          <form action="" method="post" novalidate enctype="multipart/form-data">
+            <div class="card-body pb-2">
+              {% csrf_token %}
+              {{ form|crispy }}
+              {{ image_formset.management_form }}
+                {{ image_formset.non_form_errors }}
+                <div id="image-formset">
+                  {% for form in image_formset %}
+                    <div class="formset-form">
+                      {{ form|crispy }}
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <button type="button" id="add-image-input" class="btn btn-secondary">Add Image</button>
+
+                <div class="row">
+                  <div class="col-md-6 text-center">
+                    <input type="submit" value="Post an ad" class="btn btn-primary">
+                  </div>
+                  <div class="col-md-6 text-center">
+                    <a class="btn btn-light" onclick="goBack()">Cancel</a>
+                  </div>
+                </div>
+            </div>
+          </form>
+
+          <div id="empty_form" style="display:none">
+              <div class='formset-form'>
+                  {{ image_formset.empty_form|crispy }}
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>
+      $(document).ready(function() {
+        $('#add-image-input').click(function(ev) {
+            ev.preventDefault();
+            var count = $('#image-formset').children().length;
+            $('#image-formset').append($('#empty_form').html().replace(/__prefix__/g, count));
+            $('#id_images-TOTAL_FORMS').val(parseInt(count) + 1);  });
+      })
+
+      function goBack() {
+        // Use the JavaScript history object to navigate back
+        window.history.back();
+      }
+  </script>
+
+{% endblock javascripts %}

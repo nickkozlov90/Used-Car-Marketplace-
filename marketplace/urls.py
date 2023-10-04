@@ -3,6 +3,7 @@ from django.urls import path
 from marketplace.views import (
     index, ListingCreateView, ListingListView, ListingDetailView,
     MarketUserDetailView, toggle_assign_to_listing, MarketUserCreateView,
+    MarketUserUpdateView, MarketUserFavouriteListingsView, MarketUserSaleListingsView,
 )
 
 
@@ -33,6 +34,21 @@ urlpatterns = [
         "market-user/create/",
         MarketUserCreateView.as_view(),
         name="market-user-create"
+    ),
+    path(
+        "market-user/<int:pk>/update/",
+        MarketUserUpdateView.as_view(),
+        name="market-user-update"
+    ),
+    path(
+        "market-user-detail/<int:pk>/my-favourite-listings/",
+        MarketUserFavouriteListingsView.as_view(),
+        name="my-favourite-listings",
+    ),
+    path(
+        "market-user-detail/<int:pk>/sale-listings/",
+        MarketUserSaleListingsView.as_view(),
+        name="sale-listings",
     ),
 ]
 
