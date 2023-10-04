@@ -243,7 +243,31 @@ class MarketUserFavouriteListingsView(LoginRequiredMixin, generic.ListView):
 
 
 class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
-    pass
+    model = Listing
+    paginate_by = 5
+    template_name = "marketplace/listing_list.html"
+    context_object_name = 'listings'
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('pk')
+
+        queryset = Listing.objects.filter(seller_id=user_id)
+        queryset = queryset.prefetch_related(
+            Prefetch(
+                "images",
+                queryset=Image.objects.order_by("id")[:1],
+                to_attr="first_image",
+            )
+        )
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_listings_count = self.get_queryset().count()
+        context["num_listings"] = all_listings_count
+
+        return context
 
 
 @login_required
