@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Prefetch
 from django.forms import inlineformset_factory
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
@@ -212,7 +212,34 @@ class MarketUserUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 class MarketUserFavouriteListingsView(LoginRequiredMixin, generic.ListView):
-    pass
+    model = Listing
+    template_name = "marketplace/listing_list.html"
+    paginate_by = 5
+    context_object_name = 'listings'
+
+    def get_queryset(self):
+        user_id = self.kwargs.get('pk')
+        if self.request.user.id != user_id:
+            return Listing.objects.none()
+
+        queryset = Listing.objects.filter(users__in=[self.request.user])
+
+        queryset = queryset.prefetch_related(
+            Prefetch(
+                "images",
+                queryset=Image.objects.order_by("id")[:1],
+                to_attr="first_image",
+            )
+        )
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        all_listings_count = self.get_queryset().count()
+        context["num_listings"] = all_listings_count
+
+        return context
 
 
 class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
@@ -221,4 +248,11 @@ class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
 
 @login_required
 def toggle_assign_to_listing(request, pk):
-    pass
+    user = MarketUser.objects.get(id=request.user.id)
+    if (
+        Listing.objects.get(id=pk) in user.favourite_listings.all()
+    ):
+        user.favourite_listings.remove(pk)
+    else:
+        user.favourite_listings.add(pk)
+    return HttpResponseRedirect(reverse_lazy("marketplace:listing-detail", args=[pk]))
