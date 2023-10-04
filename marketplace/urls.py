@@ -4,6 +4,7 @@ from marketplace.views import (
     index, ListingCreateView, ListingListView, ListingDetailView,
     MarketUserDetailView, toggle_assign_to_listing, MarketUserCreateView,
     MarketUserUpdateView, MarketUserFavouriteListingsView, MarketUserSaleListingsView,
+    ListingUpdateView, ListingDeleteView,
 )
 
 
@@ -18,6 +19,16 @@ urlpatterns = [
         "listing-detail/<int:pk>",
         ListingDetailView.as_view(),
         name="listing-detail"
+    ),
+    path(
+        "listing/<int:pk>/update/",
+        ListingUpdateView.as_view(),
+        name="listing-update"
+    ),
+    path(
+        "listing/<int:pk>/delete/",
+        ListingDeleteView.as_view(),
+        name="listing-delete"
     ),
     path(
         "listings-detail/<int:pk>/toggle-assign/",
