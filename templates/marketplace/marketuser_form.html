@@ -11,7 +11,7 @@
           <h3 class="text-gradient text-primary">{{ object|yesno:"Edit,Enter" }} personal data:</h3>
         </div>
         <div class="form-group mb-4">
-          <form action="" method="post" novalidate>
+          <form action="" method="post" novalidate enctype="multipart/form-data">
             {% csrf_token %}
             {{ form|crispy}}
             <div class="row">
