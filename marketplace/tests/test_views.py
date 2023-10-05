@@ -9,7 +9,9 @@ LISTINGS_URL = reverse("marketplace:listings-list")
 
 class PublicMarketUserTests(TestCase):
     def test_login_required(self):
-        response = self.client.get(reverse("marketplace:market-user-detail", args=[1]))
+        response = self.client.get(
+            reverse("marketplace:market-user-detail", args=[1])
+        )
 
         self.assertNotEqual(response.status_code, 200)
 
@@ -24,11 +26,22 @@ class PublicMarketUserTests(TestCase):
             "profile_picture": "",
         }
 
-        self.client.post(reverse("marketplace:market-user-create"), data=form_data)
-        new_market_user = MarketUser.objects.get(username=form_data["username"])
+        self.client.post(
+            reverse("marketplace:market-user-create"),
+            data=form_data
+        )
+        new_market_user = MarketUser.objects.get(
+            username=form_data["username"]
+        )
 
-        self.assertEqual(new_market_user.first_name, form_data["first_name"])
-        self.assertEqual(new_market_user.phone_number, form_data["phone_number"])
+        self.assertEqual(
+            new_market_user.first_name,
+            form_data["first_name"]
+        )
+        self.assertEqual(
+            new_market_user.phone_number,
+            form_data["phone_number"]
+        )
 
 
 class PrivateMarketUserTests(TestCase):
@@ -55,11 +68,14 @@ class PrivateMarketUserTests(TestCase):
         )
         new_last_name = "new_last_name"
         response = self.client.post(
-            reverse("marketplace:market-user-update", kwargs={"pk": market_user.id}),
+            reverse(
+                "marketplace:market-user-update",
+                kwargs={"pk": market_user.id}
+            ),
             data={
                 "last_name": new_last_name,
                 "username": "test_username_1",
-                "phone_number": "+380963334576"
+                "phone_number": "+380963334576",
             },
         )
         self.assertEqual(response.status_code, 302)
@@ -88,12 +104,15 @@ class PrivateMarketUserTests(TestCase):
         )
 
         response = self.client.post(
-            reverse("marketplace:toggle-assign-to-listing", kwargs={"pk": market_user.id})
+            reverse(
+                "marketplace:toggle-assign-to-listing",
+                kwargs={"pk": market_user.id}
+            )
         )
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(
-            get_user_model().objects.filter(id=market_user.id).get()
-            in listing.users.all()
+        self.assertIn(
+            get_user_model().objects.filter(id=market_user.id).get(),
+            listing.users.all()
         )
 
     def test_remove_listing_if_assigned_to_driver_favourites(self):
@@ -113,16 +132,21 @@ class PrivateMarketUserTests(TestCase):
         market_user.favourite_listings.add(listing)
         market_user.save()
 
-        self.assertTrue(
-            get_user_model().objects.get(id=market_user.id) in listing.users.all()
+        self.assertIn(
+            get_user_model().objects.get(id=market_user.id),
+            listing.users.all()
         )
 
         response = self.client.post(
-            reverse("marketplace:toggle-assign-to-listing", kwargs={"pk": market_user.id})
+            reverse(
+                "marketplace:toggle-assign-to-listing",
+                kwargs={"pk": market_user.id}
+            )
         )
         self.assertEqual(response.status_code, 302)
-        self.assertFalse(
-            get_user_model().objects.get(id=market_user.id) in listing.users.all()
+        self.assertNotIn(
+            get_user_model().objects.get(id=market_user.id),
+            listing.users.all()
         )
 
 
@@ -137,10 +161,7 @@ class PublicListingTests(TestCase):
         listings = Listing.objects.all()
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            list(response.context["listings"]),
-            list(listings)
-        )
+        self.assertEqual(list(response.context["listings"]), list(listings))
         self.assertTemplateUsed(response, "marketplace/listing_list.html")
 
 
@@ -164,15 +185,17 @@ class PrivateListingCase(TestCase):
         form_data = {
             "car_model": model.id,
             "seller": self.user.id,
-            'year': 2020,
-            'price': 15000,
-            'mileage': 50000,
+            "year": 2020,
+            "price": 15000,
+            "mileage": 50000,
             "description": "test_description",
             "images-TOTAL_FORMS": 0,
             "images-INITIAL_FORMS": 0,
         }
 
-        response = self.client.post(reverse("marketplace:listing-create"), data=form_data)
+        response = self.client.post(
+            reverse("marketplace:listing-create"), data=form_data
+        )
         new_listing = Listing.objects.get(car_model=form_data["car_model"])
 
         self.assertEqual(response.status_code, 302)
@@ -203,7 +226,7 @@ class PrivateListingCase(TestCase):
                 "description": "test_description_1",
                 "images-TOTAL_FORMS": 0,
                 "images-INITIAL_FORMS": 0,
-            }
+            },
         )
 
         listing.refresh_from_db()
@@ -226,16 +249,17 @@ class PrivateListingCase(TestCase):
             reverse("marketplace:listing-delete", kwargs={"pk": listing.id})
         )
         self.assertEqual(response.status_code, 302)
-        self.assertFalse(
-            Listing.objects.filter(id=listing.id).exists()
-        )
+        self.assertFalse(Listing.objects.filter(id=listing.id).exists())
 
     def test_listing_pagination_is_five(self):
         number_of_listing = 7
 
         for listing_id in range(number_of_listing):
             brand = Brand.objects.create(name=f"test_brand_{listing_id}")
-            model = Model.objects.create(brand=brand, name=f"test_model_{listing_id}")
+            model = Model.objects.create(
+                brand=brand,
+                name=f"test_model_{listing_id}"
+            )
             Listing.objects.create(
                 seller=self.user,
                 car_model=model,
@@ -258,7 +282,10 @@ class PrivateListingCase(TestCase):
 
         for listing_id in range(number_of_listing):
             brand = Brand.objects.create(name=f"test_brand_{listing_id}")
-            model = Model.objects.create(brand=brand, name=f"test_model_{listing_id}")
+            model = Model.objects.create(
+                brand=brand,
+                name=f"test_model_{listing_id}"
+            )
             Listing.objects.create(
                 seller=self.user,
                 car_model=model,
@@ -269,7 +296,9 @@ class PrivateListingCase(TestCase):
             )
 
         response = self.client.get(
-            reverse("marketplace:sale-listings", kwargs={"pk": self.user.id})
+            reverse("marketplace:sale-listings",
+                    kwargs={"pk": self.user.id}
+                    )
         )
 
         self.assertEqual(response.status_code, 200)
@@ -278,3 +307,72 @@ class PrivateListingCase(TestCase):
             number_of_listing
         )
         self.assertTemplateUsed(response, "marketplace/listing_list.html")
+
+
+class PasswordChangeTests(TestCase):
+    def setUp(self) -> None:
+        self.user = get_user_model().objects.create_user(
+            first_name="test First",
+            last_name="test Last",
+            username="test_username",
+            password="test$23456789",
+            phone_number="+380961234576",
+            profile_picture=None,
+        )
+
+        self.client.force_login(self.user)
+
+    def test_with_valid_data(self):
+        new_password = "test$23456790"
+        form_data = {
+            "old_password": "test$23456789",
+            "new_password1": new_password,
+            "new_password2": new_password,
+        }
+
+        response = self.client.post(
+            reverse("marketplace:password_change"), data=form_data
+        )
+        self.user.refresh_from_db()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(self.user.check_password(new_password))
+
+    def test_with_invalid_old_password(self):
+        new_password = "test$23456790"
+        form_data = {
+            "old_password": "test$23456790",
+            "new_password1": new_password,
+            "new_password2": new_password,
+        }
+
+        response = self.client.post(
+            reverse("marketplace:password_change"), data=form_data
+        )
+        self.user.refresh_from_db()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "Your old password was entered incorrectly.",
+            str(response.content)
+        )
+        self.assertTrue(self.user.check_password("test$23456789"))
+
+    def test_with_invalid_second_new_password(self):
+        new_password = "test$23456790"
+        form_data = {
+            "old_password": "test$23456789",
+            "new_password1": new_password,
+            "new_password2": "test$23456791",
+        }
+
+        response = self.client.post(
+            reverse("marketplace:password_change"), data=form_data
+        )
+        self.user.refresh_from_db()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "The two password fields didn\\xe2\\x80\\x99t match.",
+            str(response.content)
+        )

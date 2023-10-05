@@ -7,16 +7,12 @@ from marketplace.models import Brand, Model, Listing, MarketUser, Image
 class ModelsTests(TestCase):
     def test_brand_str(self):
         manufacturer = Brand.objects.create(name="test")
-        self.assertEqual(
-            str(manufacturer), f"{manufacturer.name}"
-        )
+        self.assertEqual(str(manufacturer), f"{manufacturer.name}")
 
     def test_model_str(self):
         brand = Brand.objects.create(name="test_brand_name")
         model = Model.objects.create(brand=brand, name="test_model_name")
-        self.assertEqual(
-            str(model), f"{brand.name} {model.name}"
-        )
+        self.assertEqual(str(model), f"{brand.name} {model.name}")
 
     def test_market_user_str(self):
         user = get_user_model().objects.create_user(
@@ -28,10 +24,7 @@ class ModelsTests(TestCase):
             profile_picture=None,
         )
 
-        self.assertEqual(
-            str(user),
-            f"{user.first_name}"
-        )
+        self.assertEqual(str(user), f"{user.first_name}")
 
     def test_listing_str(self):
         seller = MarketUser.objects.create(
@@ -55,7 +48,7 @@ class ModelsTests(TestCase):
         self.assertEqual(
             str(listing),
             f"{listing.car_model.name}, {listing.price},"
-            f" {listing.created_at.strftime('%d %b %Y')}"
+            f" {listing.created_at.strftime('%d %b %Y')}",
         )
 
     def test_listing_image_upload_to(self):
@@ -91,7 +84,7 @@ class ModelsTests(TestCase):
             profile_picture=None,
         )
         file_path = user.image_upload_to("profile.jpg")
-        expected_path = f'images/marketuser_{user.id}/profile.jpg'
+        expected_path = f"images/marketuser_{user.id}/profile.jpg"
         self.assertEqual(file_path, expected_path)
 
     def test_market_user_listing_relationship(self):

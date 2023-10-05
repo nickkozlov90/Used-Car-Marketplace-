@@ -23,7 +23,7 @@ def space_separate(value):
         return value
 
 
-@register.filter(name='add_units')
+@register.filter(name="add_units")
 def add_measurement_units(value, units):
     try:
         formatted_value = space_separate(value)
