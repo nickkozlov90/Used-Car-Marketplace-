@@ -9,7 +9,7 @@
     <div class="col-lg-6 d-flex justify-content-center flex-column">
       <div class="card d-flex blur justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
         <div class="text-left">
-          <h3 class="text-gradient text-primary">Create ad to sell your car</h3>
+          <h3 class="text-gradient text-primary">{{ object|yesno:"Edit,Create" }} ad to sell your car</h3>
           <p class="mb-0">
             Add photos and basic information about the car you want to sell.
           </p>

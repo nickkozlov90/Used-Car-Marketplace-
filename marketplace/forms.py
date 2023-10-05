@@ -188,6 +188,7 @@ def validate_phone_number(phone_number):
 
 
 class MarketUserUpdateForm(UserChangeForm):
+
     class Meta:
         model = MarketUser
         fields = (
@@ -200,6 +201,10 @@ class MarketUserUpdateForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(MarketUserUpdateForm, self).__init__(*args, **kwargs)
         self.fields["password"].widget = forms.HiddenInput()
+
+        instance = kwargs.get("instance")
+        if instance and instance.phone_number:
+            self.initial["phone_number"] = instance.phone_number
 
     def clean_phone_number(self):
         return validate_phone_number(self.cleaned_data["phone_number"])
