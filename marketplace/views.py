@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.db.models import Prefetch
 from django.forms import inlineformset_factory
 from django.http import HttpRequest, HttpResponseRedirect
@@ -7,21 +8,30 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from marketplace.forms import SearchForm, ListingForm, MarketUserCreationForm, MarketUserUpdateForm
+from marketplace.forms import (
+    SearchForm,
+    ListingForm,
+    MarketUserCreationForm,
+    MarketUserUpdateForm,
+    UserPasswordChangeForm,
+)
 from marketplace.models import Model, MarketUser, Listing, Image
 
 
 def index(request: HttpRequest):
-
     form = SearchForm(request.GET)
     context = {
         "num_listings": Listing.objects.count(),
         "num_users": MarketUser.objects.count(),
-        "num_models": Model.objects.count()
+        "num_models": Model.objects.count(),
     }
 
     if form.is_valid():
-        context.update({'search_form': form, })
+        context.update(
+            {
+                "search_form": form,
+            }
+        )
         return render(request, "marketplace/index.html", context=context)
 
 
@@ -44,9 +54,7 @@ class ListingListView(generic.ListView):
         mileage_end = self.request.GET.get("mileage_end", None)
 
         if brand:
-            queryset = queryset.filter(
-                car_model__brand_id=brand
-            )
+            queryset = queryset.filter(car_model__brand_id=brand)
         if brand:
             queryset = queryset.filter(car_model__brand=brand)
         if model:
@@ -83,11 +91,7 @@ class ListingListView(generic.ListView):
 
 
 ImageFormSet = inlineformset_factory(
-    Listing,
-    Image,
-    fields=['image'],
-    extra=1,
-    can_delete=True
+    Listing, Image, fields=["image"], extra=1, can_delete=True
 )
 
 
@@ -96,11 +100,11 @@ class ListingDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['images'] = self.object.images.all()
-        context['is_author'] = self.object.seller == self.request.user
+        context["images"] = self.object.images.all()
+        context["is_author"] = self.object.seller == self.request.user
 
-        image_urls = [image.image.url for image in context['images']]
-        context['image_urls'] = image_urls
+        image_urls = [image.image.url for image in context["images"]]
+        context["image_urls"] = image_urls
         return context
 
 
@@ -111,13 +115,11 @@ class ListingCreateView(LoginRequiredMixin, generic.CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['image_formset'] = ImageFormSet(
-                self.request.POST,
-                self.request.FILES,
-                instance=self.object
+            context["image_formset"] = ImageFormSet(
+                self.request.POST, self.request.FILES, instance=self.object
             )
         else:
-            context['image_formset'] = ImageFormSet(instance=self.object)
+            context["image_formset"] = ImageFormSet(instance=self.object)
         return context
 
     def form_valid(self, form):
@@ -126,7 +128,7 @@ class ListingCreateView(LoginRequiredMixin, generic.CreateView):
         listing.save()
 
         context = self.get_context_data()
-        image_formset = context['image_formset']
+        image_formset = context["image_formset"]
 
         if image_formset.is_valid():
             instances = image_formset.save(commit=False)
@@ -140,7 +142,7 @@ class ListingCreateView(LoginRequiredMixin, generic.CreateView):
 
     def get_success_url(self):
         user_id = self.object.seller.id
-        return reverse('marketplace:sale-listings', kwargs={'pk': user_id})
+        return reverse("marketplace:sale-listings", kwargs={"pk": user_id})
 
 
 class ListingUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -150,13 +152,11 @@ class ListingUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['image_formset'] = ImageFormSet(
-                self.request.POST,
-                self.request.FILES,
-                instance=self.object
+            context["image_formset"] = ImageFormSet(
+                self.request.POST, self.request.FILES, instance=self.object
             )
         else:
-            context['image_formset'] = ImageFormSet(instance=self.object)
+            context["image_formset"] = ImageFormSet(instance=self.object)
         return context
 
     def form_valid(self, form):
@@ -165,7 +165,7 @@ class ListingUpdateView(LoginRequiredMixin, generic.UpdateView):
         listing.save()
 
         context = self.get_context_data()
-        image_formset = context['image_formset']
+        image_formset = context["image_formset"]
 
         if image_formset.is_valid():
             instances = image_formset.save(commit=False)
@@ -181,7 +181,10 @@ class ListingUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         user_id = self.object.seller.id
-        return reverse_lazy('marketplace:sale-listings', kwargs={'pk': user_id})
+        return reverse_lazy(
+            "marketplace:sale-listings",
+            kwargs={"pk": user_id},
+        )
 
 
 class ListingDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -189,7 +192,7 @@ class ListingDeleteView(LoginRequiredMixin, generic.DeleteView):
 
     def get_success_url(self):
         user_id = self.object.seller.id
-        return reverse('marketplace:sale-listings', kwargs={'pk': user_id})
+        return reverse("marketplace:sale-listings", kwargs={"pk": user_id})
 
 
 class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
@@ -197,7 +200,7 @@ class MarketUserDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "marketplace/market_user_detail.html"
 
     def get_queryset(self):
-        user_id = self.kwargs.get('pk')
+        user_id = self.kwargs.get("pk")
         queryset = MarketUser.objects.filter(id=user_id)
 
         return queryset
@@ -209,8 +212,8 @@ class MarketUserCreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse(
-            'marketplace:market-user-detail',
-            kwargs={'pk': self.object.pk}
+            "marketplace:market-user-detail",
+            kwargs={"pk": self.object.pk},
         )
 
 
@@ -220,8 +223,8 @@ class MarketUserUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy(
-            'marketplace:market-user-detail',
-            kwargs={'pk': self.object.pk},
+            "marketplace:market-user-detail",
+            kwargs={"pk": self.object.pk},
         )
 
 
@@ -229,10 +232,10 @@ class MarketUserFavouriteListingsView(LoginRequiredMixin, generic.ListView):
     model = Listing
     template_name = "marketplace/listing_list.html"
     paginate_by = 5
-    context_object_name = 'listings'
+    context_object_name = "listings"
 
     def get_queryset(self):
-        user_id = self.kwargs.get('pk')
+        user_id = self.kwargs.get("pk")
         if self.request.user.id != user_id:
             return Listing.objects.none()
 
@@ -260,10 +263,10 @@ class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
     model = Listing
     paginate_by = 5
     template_name = "marketplace/listing_list.html"
-    context_object_name = 'listings'
+    context_object_name = "listings"
 
     def get_queryset(self):
-        user_id = self.kwargs.get('pk')
+        user_id = self.kwargs.get("pk")
 
         queryset = Listing.objects.filter(seller_id=user_id)
         queryset = queryset.prefetch_related(
@@ -287,10 +290,15 @@ class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
 @login_required
 def toggle_assign_to_listing(request, pk):
     user = MarketUser.objects.get(id=request.user.id)
-    if (
-        Listing.objects.get(id=pk) in user.favourite_listings.all()
-    ):
+    if Listing.objects.get(id=pk) in user.favourite_listings.all():
         user.favourite_listings.remove(pk)
     else:
         user.favourite_listings.add(pk)
-    return HttpResponseRedirect(reverse_lazy("marketplace:listing-detail", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("marketplace:listing-detail", args=[pk])
+    )
+
+
+class UserPasswordChangeView(PasswordChangeView):
+    template_name = "registration/password_change.html"
+    form_class = UserPasswordChangeForm

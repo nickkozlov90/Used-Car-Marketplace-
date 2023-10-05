@@ -1,10 +1,19 @@
 from django.urls import path
 
 from marketplace.views import (
-    index, ListingCreateView, ListingListView, ListingDetailView,
-    MarketUserDetailView, toggle_assign_to_listing, MarketUserCreateView,
-    MarketUserUpdateView, MarketUserFavouriteListingsView, MarketUserSaleListingsView,
-    ListingUpdateView, ListingDeleteView,
+    index,
+    ListingCreateView,
+    ListingListView,
+    ListingDetailView,
+    MarketUserDetailView,
+    toggle_assign_to_listing,
+    MarketUserCreateView,
+    MarketUserUpdateView,
+    MarketUserFavouriteListingsView,
+    MarketUserSaleListingsView,
+    ListingUpdateView,
+    ListingDeleteView,
+    UserPasswordChangeView,
 )
 
 
@@ -35,21 +44,25 @@ urlpatterns = [
         toggle_assign_to_listing,
         name="toggle-assign-to-listing",
     ),
-    path("listings/", ListingListView.as_view(), name="listings-list"),
+    path(
+        "listings/",
+        ListingListView.as_view(),
+        name="listings-list"
+    ),
     path(
         "market-user-detail/<int:pk>/",
         MarketUserDetailView.as_view(),
-        name="market-user-detail"
+        name="market-user-detail",
     ),
     path(
         "market-user/create/",
         MarketUserCreateView.as_view(),
-        name="market-user-create"
+        name="market-user-create",
     ),
     path(
         "market-user/<int:pk>/update/",
         MarketUserUpdateView.as_view(),
-        name="market-user-update"
+        name="market-user-update",
     ),
     path(
         "market-user-detail/<int:pk>/my-favourite-listings/",
@@ -60,6 +73,11 @@ urlpatterns = [
         "market-user-detail/<int:pk>/sale-listings/",
         MarketUserSaleListingsView.as_view(),
         name="sale-listings",
+    ),
+    path(
+        "accounts/password_change/",
+        UserPasswordChangeView.as_view(),
+        name="password_change",
     ),
 ]
 
