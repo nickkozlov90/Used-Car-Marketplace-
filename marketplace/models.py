@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -59,7 +61,7 @@ class Image(models.Model):
     image = models.ImageField(null=True)
 
     def image_upload_to(self, filename):
-        return f"images/listing_{self.listing.id}/{filename}"
+        return os.path.join("images", f"listing_{self.listing.id}", filename)
 
     image.upload_to = image_upload_to
 
@@ -78,6 +80,6 @@ class MarketUser(AbstractUser):
         return self.first_name
 
     def image_upload_to(self, filename):
-        return f"images/marketuser_{self.id}/{filename}"
+        return os.path.join("images", f"marketuser_{self.id}", filename)
 
     profile_picture.upload_to = image_upload_to
