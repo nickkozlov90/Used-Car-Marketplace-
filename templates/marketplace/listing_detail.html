@@ -26,7 +26,7 @@
               </div>
               <p class="text-lg mb-5">
                 Seller: {{ listing.seller.first_name }}<br> tel: {{ listing.seller.phone_number }}<br>
-                <a href="{% url "marketplace:market-user-detail" pk=listing.seller_id %}" class="text-info icon-move-right">View seller's profile
+                <a href="{% url 'marketplace:market-user-detail' pk=listing.seller_id %}" class="text-info icon-move-right">View seller's profile
                   <i class="fas fa-arrow-right text-sm ms-1"></i>
                 </a>
               </p>
@@ -61,9 +61,9 @@
             <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
               <div id="listingPhotosCarousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                  {% for image_url in image_urls %}
+                  {% for image in object.images.all %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                      <img class="d-block w-100" src="{{ image_url }}" alt="Slide">
+                      <img class="d-block w-100" src="{{ image.image.url }}" alt="Slide">
                     </div>
                   {% endfor %}
                 </div>

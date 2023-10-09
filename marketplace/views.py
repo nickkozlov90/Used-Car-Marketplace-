@@ -44,14 +44,14 @@ class ListingListView(generic.ListView):
     def get_queryset(self):
         queryset = Listing.objects.all()
 
-        brand = self.request.GET.get("brand", None)
-        model = self.request.GET.get("model", None)
-        year_start = self.request.GET.get("year_start", None)
-        year_end = self.request.GET.get("year_end", None)
-        price_start = self.request.GET.get("price_start", None)
-        price_end = self.request.GET.get("price_end", None)
-        mileage_start = self.request.GET.get("mileage_start", None)
-        mileage_end = self.request.GET.get("mileage_end", None)
+        brand = self.request.GET.get("brand")
+        model = self.request.GET.get("model")
+        year_start = self.request.GET.get("year_start")
+        year_end = self.request.GET.get("year_end")
+        price_start = self.request.GET.get("price_start")
+        price_end = self.request.GET.get("price_end")
+        mileage_start = self.request.GET.get("mileage_start")
+        mileage_end = self.request.GET.get("mileage_end")
 
         if brand:
             queryset = queryset.filter(car_model__brand_id=brand)
@@ -103,8 +103,6 @@ class ListingDetailView(generic.DetailView):
         context["images"] = self.object.images.all()
         context["is_author"] = self.object.seller == self.request.user
 
-        image_urls = [image.image.url for image in context["images"]]
-        context["image_urls"] = image_urls
         return context
 
 
