@@ -4,9 +4,10 @@ from django.contrib.auth.views import PasswordChangeView
 from django.db.models import Prefetch
 from django.forms import inlineformset_factory
 from django.http import HttpRequest, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views import generic
+from django.utils.decorators import method_decorator
+from django.views import generic, View
 
 from marketplace.forms import (
     SearchForm,
@@ -285,16 +286,19 @@ class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
         return context
 
 
-@login_required
-def toggle_assign_to_listing(request, pk):
-    user = MarketUser.objects.get(id=request.user.id)
-    if Listing.objects.get(id=pk) in user.favourite_listings.all():
-        user.favourite_listings.remove(pk)
-    else:
-        user.favourite_listings.add(pk)
-    return HttpResponseRedirect(
-        reverse_lazy("marketplace:listing-detail", args=[pk])
-    )
+class ToggleAssignToListingView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        user = MarketUser.objects.get(id=request.user.id)
+        listing = get_object_or_404(Listing, id=pk)
+
+        if listing in user.favourite_listings.all():
+            user.favourite_listings.remove(listing)
+        else:
+            user.favourite_listings.add(listing)
+
+        return HttpResponseRedirect(
+            reverse_lazy("marketplace:listing-detail", args=[pk])
+        )
 
 
 class UserPasswordChangeView(PasswordChangeView):

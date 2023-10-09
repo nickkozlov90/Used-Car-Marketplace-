@@ -6,7 +6,8 @@ from marketplace.views import (
     ListingListView,
     ListingDetailView,
     MarketUserDetailView,
-    toggle_assign_to_listing,
+    ToggleAssignToListingView,
+    # toggle_assign_to_listing,
     MarketUserCreateView,
     MarketUserUpdateView,
     MarketUserFavouriteListingsView,
@@ -41,7 +42,7 @@ urlpatterns = [
     ),
     path(
         "listings-detail/<int:pk>/toggle-assign/",
-        toggle_assign_to_listing,
+        ToggleAssignToListingView.as_view(),
         name="toggle-assign-to-listing",
     ),
     path(

@@ -103,7 +103,7 @@ class PrivateMarketUserTests(TestCase):
             in listing.users.all()
         )
 
-        response = self.client.post(
+        response = self.client.get(
             reverse(
                 "marketplace:toggle-assign-to-listing",
                 kwargs={"pk": market_user.id}
@@ -137,7 +137,7 @@ class PrivateMarketUserTests(TestCase):
             listing.users.all()
         )
 
-        response = self.client.post(
+        response = self.client.get(
             reverse(
                 "marketplace:toggle-assign-to-listing",
                 kwargs={"pk": market_user.id}

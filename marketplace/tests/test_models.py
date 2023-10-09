@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
@@ -72,7 +74,10 @@ class ModelsTests(TestCase):
         )
         image = Image(listing=listing)
         file_path = image.image_upload_to("example.jpg")
-        self.assertEqual(file_path, "images/listing_1/example.jpg")
+        self.assertEqual(
+            file_path,
+            os.path.join("images", f"listing_{listing.id}", "example.jpg")
+        )
 
     def test_user_profile_image_upload_to(self):
         user = MarketUser.objects.create(
@@ -84,8 +89,10 @@ class ModelsTests(TestCase):
             profile_picture=None,
         )
         file_path = user.image_upload_to("profile.jpg")
-        expected_path = f"images/marketuser_{user.id}/profile.jpg"
-        self.assertEqual(file_path, expected_path)
+        self.assertEqual(
+            file_path,
+            os.path.join("images", f"marketuser_{user.id}", "profile.jpg")
+        )
 
     def test_market_user_listing_relationship(self):
         user = MarketUser.objects.create(
