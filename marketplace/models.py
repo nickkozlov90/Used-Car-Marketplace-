@@ -32,7 +32,7 @@ class Listing(models.Model):
         related_name="car_listings",
     )
     car_model = models.ForeignKey(
-        Model, on_delete=models.CASCADE, related_name="car_models"
+        Model, on_delete=models.CASCADE, related_name="car_listings"
     )
     year = models.IntegerField()
     price = models.IntegerField()
