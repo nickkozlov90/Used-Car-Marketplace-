@@ -50,6 +50,7 @@ Follow these steps to set up the project locally:
    ```bash
    pip install -r requirements.txt
    ```
+5. Copy this file ".env_sample" and rename it to ".env", then fill in the actual values for your local development environment.
 
 ## Usage
 
@@ -66,4 +67,18 @@ Follow these steps to set up the project locally:
    ```
 
 Access the application in your web browser at http://localhost:8000.
-   
+
+
+
+
+
+## Project Fixture Files
+
+ - This project includes fixture files that are used for testing and demonstration purposes.
+The fixture files contain sample data representing various user profiles, car models and listings.
+ - You can find the fixture file is named `marketplace_db_data.json` in the root directory.
+ - To load the fixture data into the application, use the following command:
+
+   ```bash
+   python manage.py loaddata marketplace_db_data.json
+   ```
