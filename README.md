@@ -11,6 +11,10 @@ The Used Car Marketplace is a platform where users can:
  - Contact sellers and negotiate deals.
  - Administer and manage their listings through a user-friendly dashboard.
 
+## Check it out!
+
+   Used-Car-Marketplace deployed to Render (https://used-car-marketplace.onrender.com)
+
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
 
@@ -67,9 +71,6 @@ Follow these steps to set up the project locally:
    ```
 
 Access the application in your web browser at http://localhost:8000.
-
-
-
 
 
 ## Project Fixture Files
