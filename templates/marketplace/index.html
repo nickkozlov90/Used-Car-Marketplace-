@@ -1,0 +1,65 @@
+{% extends 'layouts/base_sections.html' %}
+{% load static %}
+
+{% block header %}
+
+  <header class="header-2">
+    {% include 'includes/navigation.html' %}
+    <div class="page-header min-vh-75 relative" style="background-image: url('{% static 'img/index_bg_image.jpg' %}')">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 text-center mx-auto">
+            <h1 class="text-white pt-3 mt-n5">AutoSale</h1>
+            <p class="lead text-white mt-1">Free & Open Place to Buy or Sell Your Car.</p>
+          </div>
+        </div>
+      </div>
+      {% include 'includes/waves_block.html' %}
+    </div>
+  </header>
+
+{% endblock header %}
+
+{% block content %}
+
+  <section class="pt-9 pb-4" id="count-stats">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 z-index-2 border-radius-xl mt-n10 mx-auto py-3 blur shadow-blur">
+          <div class="row">
+            <div class="col-md-4 position-relative">
+              <div class="p-3 text-center">
+                <h1 class="text-gradient text-primary"><span id="state1">{{ num_listings }}</span></h1>
+                <h5 class="mt-3">Ads</h5>
+                <p class="text-sm">Add to sell the car and make lists of your favourites</p>
+              </div>
+              <hr class="vertical dark">
+            </div>
+            <div class="col-md-4 position-relative">
+              <div class="p-3 text-center">
+                <h1 class="text-gradient text-primary"> <span id="state2">{{ num_users }}</span></h1>
+                <h5 class="mt-3">Users</h5>
+                <p class="text-sm">From all over the country</p>
+              </div>
+              <hr class="vertical dark">
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 text-center">
+                <h1 class="text-gradient text-primary" id="state3">{{ num_models }}</h1>
+                <h5 class="mt-3">Models</h5>
+                <p class="text-sm">Popular, rare and collectible</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% block search_form %}
+
+    {% include "includes/search_form.html" %}
+
+  {% endblock search_form %}
+
+{% endblock content %}

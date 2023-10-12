@@ -1,0 +1,111 @@
+
+{% extends "layouts/base.html" %}
+{% load query_transform %}
+{#<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">#}
+
+{% block content %}
+  <section class="py-sm-7 py-5 position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mx-auto">
+          <div class="row py-lg-7 py-5">
+            <div class="col-lg-4 col-md-5 position-relative my-auto">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4 class="mb-0">{{ listing.car_model.brand.name }} {{ listing.car_model.name }} {{ listing.year }}</h4>
+              </div>
+              <div class="row mb-2">
+                <div class="col-auto">
+                  <span class="h6">{{ listing.price|add_units:"$" }}</span>
+                </div>
+                <div class="col-auto">
+                  <span class="h6">{{ listing.mileage|add_units:"km" }}</span>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <p>{{ listing.description }}</p>
+              </div>
+              <p class="text-lg mb-5">
+                Seller: {{ listing.seller.first_name }}<br> tel: {{ listing.seller.phone_number }}<br>
+                <a href="{% url 'marketplace:market-user-detail' pk=listing.seller_id %}" class="text-info icon-move-right">View seller's profile
+                  <i class="fas fa-arrow-right text-sm ms-1"></i>
+                </a>
+              </p>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                {% if listing in user.favourite_listings.all %}
+                  <a href="{% url 'marketplace:toggle-assign-to-listing' pk=listing.id %}" class="btn btn-sm btn-primary text-nowrap mb-2">
+                    Delete from favourites
+                  </a>
+                {% else %}
+                  <a href="{% url 'marketplace:toggle-assign-to-listing' pk=listing.id %}" class="btn btn-sm btn-primary text-nowrap mb-2">
+                    Add to favourites
+                  </a>
+                {% endif %}
+
+              </div>
+              {% if is_author %}
+              <div class="row mb-4">
+                <div class="col-auto">
+                  <a href="{% url 'marketplace:listing-update' pk=listing.id %}" class="btn btn-sm btn-outline-info text-nowrap mb-0">
+                    Edit
+                  </a>
+                </div>
+                <div class="col-auto">
+                  <a href="{% url 'marketplace:listing-delete' pk=listing.id %}" class="btn btn-sm btn-outline-danger text-nowrap mb-0">
+                    Delete
+                  </a>
+                </div>
+              </div>
+              {%  endif %}
+            </div>
+
+            <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mt-sm-0 mt-4">
+              <div id="listingPhotosCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  {% for image in object.images.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      <img class="d-block w-100" src="{{ image.image.url }}" alt="Slide">
+                    </div>
+                  {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#listingPhotosCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#listingPhotosCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+
+              <div class="flex-sm-wrap">
+                {% for image in images %}
+                  <img src="{{ image.image.url }}" alt="Image" width="100" data-index="{{ forloop.counter0 }}" class="carousel-image">
+                {%  endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Listen for clicks on images with the class "carousel-image"
+      $('.carousel-image').on('click', function() {
+        // Get the index of the clicked image from the "data-index" attribute
+        var index = $(this).data('index');
+
+        // Activate the corresponding carousel item
+        $('#listingPhotosCarousel').carousel(index);
+      });
+    });
+  </script>
+
+{% endblock content %}
+
+

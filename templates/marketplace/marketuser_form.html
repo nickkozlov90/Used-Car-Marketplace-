@@ -1,0 +1,40 @@
+{% extends "layouts/base_sections.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-6 d-flex justify-content-center flex-column">
+      <div class="card d-flex blur justify-content-center p-4 shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+        <div class="text-left">
+          <h3 class="text-gradient text-primary">{{ object|yesno:"Edit,Enter" }} personal data:</h3>
+        </div>
+        <div class="form-group mb-4">
+          <form action="" method="post" novalidate enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <div class="row">
+              <div class="col-md-6 text-center">
+                <input type="submit" value="Save" class="btn btn-primary">
+              </div>
+              <div class="col-md-6 text-center">
+                <a class="btn btn-light" onclick="goBack()">Cancel</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content%}
+
+{% block javascripts %}
+  <script>
+      function goBack() {
+      // Use the JavaScript history object to navigate back
+      window.history.back();
+      }
+  </script>
+{% endblock javascripts %}

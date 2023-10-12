@@ -1,0 +1,51 @@
+{% extends 'layouts/base_sections.html' %}
+
+{% load static %}
+{% load query_transform %}
+
+{% block content %}
+
+  <div class="d-flex justify-content-center align-items-top min-vh-100">
+    <div class="container">
+      {% if listings %}
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-8 text-start mx-auto my-auto">
+            <h4 class="text-black-50">{{ num_listings }} car{{ num_listings|pluralize }} found according to your request:</h4>
+          </div>
+        </div>
+        {% for listing in listings %}
+          <div class="row mt-4 justify-content-center">
+            <div class="col-lg-8 col-12">
+              <div class="card card-profile overflow-hidden">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
+                    <div class="p-3 pe-md-0">
+                      {% if listing.first_image %}
+                        <a href="{% url 'marketplace:listing-detail' pk=listing.id %}">
+                          <img class="w-100 border-radius-md" src="{{ listing.first_image.0.image.url }}" alt="image">
+                        </a>
+                      {%  endif %}
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
+                    <div class="card-body">
+                      <a href="{% url 'marketplace:listing-detail' pk=listing.id %}">
+                        <h5 class="mb-0">{{ listing.car_model }} {{ listing.year }}</h5>
+                      </a>
+                      <h6 class="text-info">{{ listing.price|add_units:"$"}}</h6>
+                      <p class="mb-0">{{ listing.mileage|add_units:"km"}}</p>
+                      <p class="mb-0">{{ listing.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No listings were found according to your request parameters.</p>
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock content %}
