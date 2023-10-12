@@ -14,7 +14,7 @@ The Used Car Marketplace is a platform where users can:
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
 
- - Python 3.x
+ - Python 3.10.10
  - Django 4.2.5
  - List of other requirements you can find in 'requirements.txt' file.
 
