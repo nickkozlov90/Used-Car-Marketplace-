@@ -83,3 +83,7 @@ The fixture files contain sample data representing various user profiles, car mo
    ```bash
    python manage.py loaddata marketplace_db_data.json
    ```
+
+### Technologies Used
+* [Django REST framework](https://www.djangoproject.com/) Django is a high-level Python framework for web development.
+* Storage of media files is implemented using [AWS S3 Storage](https://aws.amazon.com/pm/serv-s3/).
