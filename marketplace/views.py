@@ -55,11 +55,9 @@ class ListingListView(generic.ListView):
         mileage_end = self.request.GET.get("mileage_end")
 
         if brand:
-            queryset = queryset.filter(car_model__brand_id=brand)
-        if brand:
-            queryset = queryset.filter(car_model__brand=brand)
+            queryset = queryset.filter(car_model__brand__id=brand)
         if model:
-            queryset = queryset.filter(car_model__name__icontains=model)
+            queryset = queryset.filter(car_model__id=model)
         if year_start:
             queryset = queryset.filter(year__gte=year_start)
         if year_end:
