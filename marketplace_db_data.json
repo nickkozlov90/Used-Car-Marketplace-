@@ -202,70 +202,10 @@
       "is_staff": false,
       "is_active": true,
       "date_joined": "2022-08-08T14:19:09Z",
-      "favourite_listings": [3, 4, 10],
+      "favourite_listings": [10],
       "groups": [],
       "user_permissions": [],
       "phone_number": "+380175501675"
-    }
-  },
-  {
-    "model": "marketplace.marketuser",
-    "pk": 4,
-    "fields": {
-      "password": "QR+0!S866ZFr",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "jonathan.byers",
-      "first_name": "Jonathan",
-      "last_name": "Byers",
-      "email": "jonathan.byers@marketplace.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-08-08T14:19:09Z",
-      "favourite_listings": [5, 7, 11, 14],
-      "groups": [],
-      "user_permissions": [],
-      "phone_number": "+380063428631"
-    }
-  },
-  {
-    "model": "marketplace.marketuser",
-    "pk": 5,
-    "fields": {
-      "password": "zUlV5.74xc$5",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "dustin.henderson",
-      "first_name": "Dustin",
-      "last_name": "Henderson",
-      "email": "dustin.henderson@marketplace.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [3, 10],
-      "groups": [],
-      "user_permissions": [],
-      "phone_number": "+380256421827"
-    }
-  },
-  {
-    "model": "marketplace.marketuser",
-    "pk": 6,
-    "fields": {
-      "password": "vVm5U$]+5o0:",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "mike.wheeler",
-      "first_name": "Mike",
-      "last_name": "Wheeler",
-      "email": "mike.wheeler@marketplace.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [16],
-      "groups": [],
-      "user_permissions": [],
-      "phone_number": "+380341096365"
     }
   },
   {
@@ -282,7 +222,7 @@
       "is_staff": false,
       "is_active": true,
       "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [8, 9],
+      "favourite_listings": [3, 4],
       "groups": [],
       "user_permissions": [],
       "phone_number": "+380208748593"
@@ -302,78 +242,19 @@
       "is_staff": false,
       "is_active": true,
       "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [],
+      "favourite_listings": [5, 11, 14],
       "groups": [],
       "user_permissions": [],
       "phone_number": "+380252583799"
     }
   },
-  {
-    "model": "marketplace.marketuser",
-    "pk": 9,
-    "fields": {
-      "password": "ct2-9QZ-5K51",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "martin.brenner",
-      "first_name": "Martin",
-      "last_name": "Brenner",
-      "email": "martin.brenner@marketplace.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [],
-      "groups": [],
-      "user_permissions": [],
-      "phone_number": "+380261621585"
-    }
-  },
-  {
-    "model": "marketplace.marketuser",
-    "pk": 10,
-    "fields": {
-      "password": "87bs£xIS<6;X",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "billy.hargrove",
-      "first_name": "Billy",
-      "last_name": "Hargrove",
-      "email": "billy.hargrove@marketplace.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [],
-      "groups": [],
-      "user_permissions": [],
-      "phone_number": "+380209302557"
-    }
-  },
-    {
-    "model": "marketplace.marketuser",
-    "pk": 11,
-    "fields": {
-      "password": "^62OTw7w'XKa",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "bob.newby",
-      "first_name": "Bob",
-      "last_name": "Newby",
-      "email": "bob.newby@marketplace.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2022-08-09T14:19:09Z",
-      "favourite_listings": [],
-      "groups": [],
-      "user_permissions": [],
-      "phone_number": "+380126583916"
-    }
-  },
+
   {
     "model": "marketplace.listing",
     "pk": 1,
     "fields": {
       "car_model": 1,
-      "seller": 11,
+      "seller": 2,
       "year": "2018",
       "price": "14998",
       "mileage": "190198",
@@ -386,7 +267,7 @@
     "pk": 2,
     "fields": {
       "car_model": 16,
-      "seller": 10,
+      "seller": 2,
       "year": "2018",
       "price": "17999",
       "mileage": "167754",
@@ -399,7 +280,7 @@
     "pk": 3,
     "fields": {
       "car_model": 10,
-      "seller": 9,
+      "seller": 2,
       "year": "2016",
       "price": "12700",
       "mileage": "183717",
@@ -412,7 +293,7 @@
     "pk": 4,
     "fields": {
       "car_model": 14,
-      "seller": 8,
+      "seller": 2,
       "year": "2019",
       "price": "19599",
       "mileage": "119400",
@@ -425,7 +306,7 @@
     "pk": 5,
     "fields": {
       "car_model": 15,
-      "seller": 7,
+      "seller": 3,
       "year": "2019",
       "price": "28995",
       "mileage": "92127",
@@ -438,7 +319,7 @@
     "pk": 6,
     "fields": {
       "car_model": 2,
-      "seller": 6,
+      "seller": 3,
       "year": "2018",
       "price": "17590",
       "mileage": "42480",
@@ -451,7 +332,7 @@
     "pk": 7,
     "fields": {
       "car_model": 5,
-      "seller": 5,
+      "seller": 3,
       "year": "2021",
       "price": "32000",
       "mileage": "48602",
@@ -464,7 +345,7 @@
     "pk": 8,
     "fields": {
       "car_model": 12,
-      "seller": 4,
+      "seller": 3,
       "year": "2021",
       "price": "35590",
       "mileage": "20730",
@@ -477,7 +358,7 @@
     "pk": 9,
     "fields": {
       "car_model": 13,
-      "seller": 3,
+      "seller": 7,
       "year": "2023",
       "price": "46999",
       "mileage": "8090",
@@ -490,7 +371,7 @@
     "pk": 10,
     "fields": {
       "car_model": 3,
-      "seller": 2,
+      "seller": 7,
       "year": "2014",
       "price": "12995",
       "mileage": "102125",
@@ -516,7 +397,7 @@
     "pk": 12,
     "fields": {
       "car_model": 7,
-      "seller": 2,
+      "seller": 7,
       "year": "2022",
       "price": "36999",
       "mileage": "66575",
@@ -529,7 +410,7 @@
     "pk": 13,
     "fields": {
       "car_model": 6,
-      "seller": 3,
+      "seller": 8,
       "year": "2021",
       "price": "36000",
       "mileage": "28010",
@@ -542,7 +423,7 @@
     "pk": 14,
     "fields": {
       "car_model": 5,
-      "seller": 4,
+      "seller": 8,
       "year": "2014",
       "price": "17500",
       "mileage": "163094",
@@ -555,7 +436,7 @@
     "pk": 15,
     "fields": {
       "car_model": 11,
-      "seller": 7,
+      "seller": 8,
       "year": "2018",
       "price": "20000",
       "mileage": "197300",
@@ -567,7 +448,7 @@
     "model": "marketplace.listing",
     "pk": 16,
     "fields": {
-      "car_model": 9,
+      "car_model": 8,
       "seller": 10,
       "year": "2018",
       "price": "22899",
