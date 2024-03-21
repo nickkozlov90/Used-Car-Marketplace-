@@ -172,7 +172,7 @@
     "model": "marketplace.marketuser",
     "pk": 2,
     "fields": {
-      "password": "pbkdf2_sha256$320000$73Z1Y57bcoscZ37s9rE9v0$4SEQ0TtXwJKzO5/CRdFSrTifatiPjkZ38gM2H8Kqsdg=",
+      "password": "C9!0~>Gw9DjZ",
       "last_login": null,
       "is_superuser": false,
       "username": "joyce.byers",
@@ -192,7 +192,7 @@
     "model": "marketplace.marketuser",
     "pk": 3,
     "fields": {
-      "password": "pbkdf2_sha256$320000$QtPol3T7x9quBj4BnbnVwW$UwT4kihkRfSvQEWEeuqVKwMgis2ikKVZfJDBcQMvOKY=",
+      "password": "REC2Eud2b#3#",
       "last_login": null,
       "is_superuser": false,
       "username": "jim.hopper",
@@ -212,7 +212,7 @@
     "model": "marketplace.marketuser",
     "pk": 4,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "QR+0!S866ZFr",
       "last_login": null,
       "is_superuser": false,
       "username": "jonathan.byers",
@@ -232,7 +232,7 @@
     "model": "marketplace.marketuser",
     "pk": 5,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l1$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "zUlV5.74xc$5",
       "last_login": null,
       "is_superuser": false,
       "username": "dustin.henderson",
@@ -252,7 +252,7 @@
     "model": "marketplace.marketuser",
     "pk": 6,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "vVm5U$]+5o0:",
       "last_login": null,
       "is_superuser": false,
       "username": "mike.wheeler",
@@ -272,7 +272,7 @@
     "model": "marketplace.marketuser",
     "pk": 7,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "0F5%B3W@t7t*",
       "last_login": null,
       "is_superuser": false,
       "username": "lucas.sinclair",
@@ -292,7 +292,7 @@
     "model": "marketplace.marketuser",
     "pk": 8,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "K/#5M7763AvA",
       "last_login": null,
       "is_superuser": false,
       "username": "nancy.wheeler",
@@ -312,7 +312,7 @@
     "model": "marketplace.marketuser",
     "pk": 9,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "ct2-9QZ-5K51",
       "last_login": null,
       "is_superuser": false,
       "username": "martin.brenner",
@@ -332,7 +332,7 @@
     "model": "marketplace.marketuser",
     "pk": 10,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "87bs£xIS<6;X",
       "last_login": null,
       "is_superuser": false,
       "username": "billy.hargrove",
@@ -352,7 +352,7 @@
     "model": "marketplace.marketuser",
     "pk": 11,
     "fields": {
-      "password": "pbkdf2_sha256$320000$9yU0PLTDKlL02PedUtk2l2$LKjj8O1xGiPGEkDpjsHk87db1iLgt8dgDqECzcsivio",
+      "password": "^62OTw7w'XKa",
       "last_login": null,
       "is_superuser": false,
       "username": "bob.newby",
