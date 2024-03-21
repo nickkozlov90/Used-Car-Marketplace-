@@ -43,7 +43,7 @@ class ListingListView(generic.ListView):
     context_object_name = "listings"
 
     def get_queryset(self):
-        queryset = Listing.objects.all()
+        queryset = Listing.objects.select_related("car_model__brand")
 
         brand = self.request.GET.get("brand")
         model = self.request.GET.get("model")
@@ -80,13 +80,6 @@ class ListingListView(generic.ListView):
         )
 
         return queryset
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        all_listings_count = self.get_queryset().count()
-        context["num_listings"] = all_listings_count
-
-        return context
 
 
 ImageFormSet = inlineformset_factory(

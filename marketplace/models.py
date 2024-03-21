@@ -65,6 +65,9 @@ class Image(models.Model):
 
     image.upload_to = image_upload_to
 
+    def __str__(self):
+        return f"listing_{self.listing.id}_image_{self.id}"
+
 
 class MarketUser(AbstractUser):
     profile_picture = models.ImageField(null=True, blank=True)
