@@ -30,7 +30,7 @@ class SearchForm(forms.Form):
     )
 
     model = forms.ModelChoiceField(
-        queryset=Model.objects.all(),
+        queryset=Model.objects.select_related("brand"),
         required=False,
         widget=forms.Select(
             attrs={"class": "form-control", "title": "Select a model"}
