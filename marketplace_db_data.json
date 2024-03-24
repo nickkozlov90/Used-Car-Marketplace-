@@ -172,7 +172,7 @@
     "model": "marketplace.marketuser",
     "pk": 2,
     "fields": {
-      "password": "C9!0~>Gw9DjZ",
+      "password": "pbkdf2_sha256$600000$tWJQ6bgwsdyLLDlzLU9qkd$D/t3Wd7ooPOhUGuGivgUXG8rM0heflNUzqsMUhODT5c=",
       "last_login": null,
       "is_superuser": false,
       "username": "joyce.byers",
@@ -192,7 +192,7 @@
     "model": "marketplace.marketuser",
     "pk": 3,
     "fields": {
-      "password": "REC2Eud2b#3#",
+      "password": "pbkdf2_sha256$600000$QAWfsBrDz8jCSkWtIJDfIM$oR4+Cbhifrsblute1z2UrzuYGMimwur3alfiBIjZZG4=",
       "last_login": null,
       "is_superuser": false,
       "username": "jim.hopper",
@@ -212,7 +212,7 @@
     "model": "marketplace.marketuser",
     "pk": 7,
     "fields": {
-      "password": "0F5%B3W@t7t*",
+      "password": "pbkdf2_sha256$600000$xQlTt3JGUWkAC8GVsBA3eb$mA3uagyzcE/SGRy9yGFr2rpxPR+7+NPG96RRuDgFhOE=",
       "last_login": null,
       "is_superuser": false,
       "username": "lucas.sinclair",
@@ -232,7 +232,7 @@
     "model": "marketplace.marketuser",
     "pk": 8,
     "fields": {
-      "password": "K/#5M7763AvA",
+      "password": "pbkdf2_sha256$600000$P1LM5s41tzOGPyCuLMIF65$yyoU1OejSK0ik/uIShQq890cPQvm2GMQKRqFLo90bzI=",
       "last_login": null,
       "is_superuser": false,
       "username": "nancy.wheeler",
@@ -448,8 +448,8 @@
     "model": "marketplace.listing",
     "pk": 16,
     "fields": {
-      "car_model": 8,
-      "seller": 10,
+      "car_model": 4,
+      "seller": 8,
       "year": "2018",
       "price": "22899",
       "mileage": "80262",
