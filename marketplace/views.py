@@ -273,6 +273,8 @@ class MarketUserSaleListingsView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         all_listings_count = self.get_queryset().count()
         context["num_listings"] = all_listings_count
+        seller = MarketUser.objects.get(id=self.kwargs.get("pk"))
+        context["seller_name"] = f"{seller.first_name} {seller.last_name}"
 
         return context
 

@@ -10,7 +10,11 @@
       {% if listings %}
         <div class="row justify-content-center mt-5">
           <div class="col-lg-8 text-start mx-auto my-auto">
-            <h4 class="text-black-50">{{ paginator.count }} car{{ num_listings|pluralize }} found according to your request:</h4>
+            {% if seller_name %}
+              <h4 class="text-black-50">{{ paginator.count }} listing{{ num_listings|pluralize }} found published by {{ seller_name }}:</h4>
+            {% else %}
+              <h4 class="text-black-50">{{ paginator.count }} car{{ num_listings|pluralize }} found according to your request:</h4>
+            {% endif %}
           </div>
         </div>
         {% for listing in listings %}

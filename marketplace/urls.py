@@ -7,7 +7,6 @@ from marketplace.views import (
     ListingDetailView,
     MarketUserDetailView,
     ToggleAssignToListingView,
-    # toggle_assign_to_listing,
     MarketUserCreateView,
     MarketUserUpdateView,
     MarketUserFavouriteListingsView,
